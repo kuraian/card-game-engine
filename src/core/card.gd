@@ -1,15 +1,15 @@
 @tool
-class_name	CardUI extends Control
+class_name	Card extends Control
 
-signal card_hovered(card: CardUI)
-signal card_unhovered(card: CardUI)
-signal card_clicked(card: CardUI)
-signal card_unclicked(card: CardUI)
+signal card_hovered(card: Card)
+signal card_unhovered(card: Card)
+signal card_clicked(card: Card)
+signal card_unclicked(card: Card)
 
 @onready var card_base = $Base
 @onready var card_icon = $Icon
 
-@export var card_data : CardUIData
+@export var card_data : CardData
 
 var card_base_texture : String
 var card_icon_texture : String

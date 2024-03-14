@@ -1,4 +1,4 @@
-class_name CardUIData extends Resource
+class_name CardData extends Resource
 
 signal card_data_updated
 
