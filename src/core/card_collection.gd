@@ -2,17 +2,14 @@ class_name CardCollection extends Control
 
 signal collection_added_card(collection: CardCollection, card: Card)
 signal collection_removed_card(collection: CardCollection, card: Card)
-signal card_hovered(card: Card)
-signal card_unhovered(card: Card)
-signal card_clicked(card: Card)
-signal card_unclicked(card: Card)
 
-@export var pile_position := Vector2.ZERO
-
-@export_group("Cards")
+@export var card_scene : PackedScene
+@export var collection_name := "placeholder"
 
 var _cards := [] # an array of Card objects
-var max_cards := 52
+
+func _to_string():
+	return collection_name
 
 func add_card(card: Card):
 	_cards.push_back(card)
@@ -35,7 +32,7 @@ func shuffle():
 	_cards.shuffle()
 
 func _ready():
-	pass # Replace with function body.
-
+	pass
+	
 func _process(delta):
 	pass
