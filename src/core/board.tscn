@@ -20,6 +20,7 @@ offset_left = 459.0
 offset_top = 350.0
 offset_right = -501.0
 offset_bottom = -10.0
+collection_name = "deck"
 
 [node name="Play" parent="." instance=ExtResource("3_6skdm")]
 layout_mode = 1
@@ -27,3 +28,4 @@ offset_left = 937.0
 offset_top = 342.0
 offset_right = -23.0
 offset_bottom = -18.0
+collection_name = "play1"

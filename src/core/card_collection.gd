@@ -5,6 +5,7 @@ signal collection_removed_card(collection: CardCollection, card: Card)
 
 @export var card_scene : PackedScene
 @export var collection_name := "placeholder"
+@export var max_cards := 10
 
 var _cards := [] # an array of Card objects
 

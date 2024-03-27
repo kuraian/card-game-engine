@@ -5,8 +5,8 @@ signal card_hovered(card: Card)
 signal card_unhovered(card: Card)
 signal card_clicked(card: Card)
 signal card_unclicked(card: Card)
-signal collection_entered(collection: CardCollection)
-signal collection_exited(collection: CardCollection)
+signal collection_entered(card: Card, collection: CardCollection)
+signal collection_exited(card: Card, collection: CardCollection)
 
 @onready var card_base = $Base
 @onready var card_icon = $Icon
@@ -73,8 +73,10 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	print("entered", area)
+	var parent = area.get_parent()
+	emit_signal("collection_entered", self, parent)
 
 
 func _on_area_2d_area_exited(area):
-	print("exited", area)
+	var parent = area.get_parent()
+	emit_signal("collection_exited", self, parent)
