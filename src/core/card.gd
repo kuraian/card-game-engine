@@ -1,82 +1,76 @@
 @tool
 class_name	Card extends Control
 
-signal card_hovered(card: Card)
-signal card_unhovered(card: Card)
 signal card_clicked(card: Card)
 signal card_unclicked(card: Card)
+signal card_hovered(card: Card)
+signal card_unhovered(card: Card)
 signal collection_entered(card: Card, collection: CardCollection)
 signal collection_exited(card: Card, collection: CardCollection)
 
-@onready var card_base = $Base
-@onready var card_icon = $Icon
+@onready var base = $Base
+@onready var icon = $Icon
 
-@export var card_data : CardData
+@export var data : CardData
+@export var base_texture : String
+@export var icon_texture : String
+@export var interactable := true
+@export var draggable := true
+@export var hover_distance := 20
 
-var card_base_texture : String
-var card_icon_texture : String
-var is_enabled := true
-var is_hovered := false
-var is_clicked := false
-var is_draggable := true
-var hover_distance := 20
 var target_position := Vector2.ZERO
+var clicked := false
+var hovered := false
 
-func set_disabled():
-	is_hovered = false
-	is_clicked = false
-	is_draggable = false
-	is_enabled = false
-	
-func set_enabled():
-	is_enabled = true
-	
+func set_ability(interact=true, drag=true):
+	interactable=interact
+	draggable=drag
+
 func _ready():
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
 	gui_input.connect(_on_gui_input)
-	
-	custom_minimum_size = card_base.get_size()
+
+	custom_minimum_size = base.get_size()
 	mouse_filter = Control.MOUSE_FILTER_PASS
 
 func _on_mouse_enter():
-	if is_enabled:
-		is_hovered = true
+	print("entered")
+	if interactable:
+		hovered = true
 		target_position.y -= hover_distance
 		emit_signal("card_hovered", self)
-		
+
 func _on_mouse_exit():
-	if is_clicked:
+	if clicked:
 		return
-	if is_hovered:
-		is_hovered = false
+	if hovered:
+		hovered = false
 		target_position.y += hover_distance
 		emit_signal("card_unhovered", self)
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			if is_enabled:
-				is_clicked = true
-				is_hovered = false
+			if interactable:
+				clicked = true
+				hovered = false
 				emit_signal("card_clicked", self)
 		else:
-			if is_clicked:
-				is_clicked = false
+			if clicked:
+				clicked = false
 				emit_signal("card_unclicked", self)
-
-func _process(delta):
-	if is_clicked:
-		if is_draggable:
-			target_position = get_global_mouse_position() - (custom_minimum_size * 0.5)
-		position = target_position
-
 
 func _on_area_2d_area_entered(area):
 	var parent = area.get_parent()
 	emit_signal("collection_entered", self, parent)
 
-
 func _on_area_2d_area_exited(area):
 	var parent = area.get_parent()
 	emit_signal("collection_exited", self, parent)
+
+func _process(delta):
+	if clicked:
+		if draggable:
+			target_position = get_global_mouse_position() - (custom_minimum_size * 0.5)
+	position = target_position

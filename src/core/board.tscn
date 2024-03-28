@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8c8tfcc2xeoq"]
+[gd_scene load_steps=4 format=3 uid="uid://urnvqg48jcvn"]
 
 [ext_resource type="Script" path="res://src/core/board.gd" id="1_cydxk"]
-[ext_resource type="PackedScene" uid="uid://cs1c4t8bdxsvm" path="res://src/core/card.tscn" id="2_5uovb"]
-[ext_resource type="PackedScene" uid="uid://b0dmwlysfyoy" path="res://src/core/card_collection.tscn" id="3_6skdm"]
+[ext_resource type="PackedScene" uid="uid://di0skioo537hh" path="res://src/core/card.tscn" id="2_5uovb"]
+[ext_resource type="PackedScene" uid="uid://buanfwulo4efx" path="res://src/core/card_collection.tscn" id="3_6skdm"]
 
 [node name="Board" type="Control"]
 layout_mode = 3
@@ -13,19 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cydxk")
 card_scene = ExtResource("2_5uovb")
+collection_scene = ExtResource("3_6skdm")
 
-[node name="Deck" parent="." instance=ExtResource("3_6skdm")]
+[node name="CardCollection" parent="." instance=ExtResource("3_6skdm")]
 layout_mode = 1
-offset_left = 459.0
-offset_top = 350.0
-offset_right = -501.0
-offset_bottom = -10.0
-collection_name = "deck"
-
-[node name="Play" parent="." instance=ExtResource("3_6skdm")]
-layout_mode = 1
-offset_left = 937.0
-offset_top = 342.0
-offset_right = -23.0
-offset_bottom = -18.0
-collection_name = "play1"

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs1c4t8bdxsvm"]
+[gd_scene load_steps=5 format=3 uid="uid://di0skioo537hh"]
 
 [ext_resource type="Script" path="res://src/core/card.gd" id="1_27c0u"]
-[ext_resource type="Texture2D" uid="uid://4yx2vpkvtglo" path="res://src/core/card_blank.png" id="2_axw0d"]
 [ext_resource type="Texture2D" uid="uid://b020e6mxa0geb" path="res://icon.svg" id="3_hcrbw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wye6a"]
+load_path = "res://.godot/imported/card_blank.png-81bf556f664ad5a7d7ee6b52dbdeb414.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdmb8"]
 size = Vector2(192, 288)
@@ -24,7 +26,7 @@ script = ExtResource("1_27c0u")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_axw0d")
+texture = SubResource("CompressedTexture2D_wye6a")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
